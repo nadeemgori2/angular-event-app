@@ -1,0 +1,40 @@
+<div class="event-list">
+  <div class="event-list__header">
+    <input class="event-list__header-search"
+           [(ngModel)]="searchedValue"
+           type="text"
+           [placeholder]="placeholder"
+    />
+  </div>
+  <div class="event-list__body">
+    <ng-container *ngFor="let event of searchedEventList">
+      <div class="event-list__cards">
+        <img [src]="event.imageUrl" class="event-list__cards_image">
+        <div class="event-list__cards-footer">
+          <div class="event-list__cards-footer_name">
+            {{event.name}}
+          </div>
+          <div class="event-list__cards-footer_seats">
+            {{event.numberOfSeatsSvailable+" Seats Left"}}
+          </div>
+          <div class="event-list__cards-footer_date">
+            {{event.dateOfEvent}}
+          </div>
+        </div>
+        <button *ngIf="event.numberOfSeatsSvailable"
+                class="event-list__cards-footer_button"
+                type="button"
+                (click)="onBooking(event)"
+        >
+          Book now
+        </button>
+        <div class="event-list__cards-footer_no-ticket"
+             *ngIf="!event.numberOfSeatsSvailable"
+        >
+          {{"Sold Out"}}
+        </div>
+      </div>
+    </ng-container>
+    <div *ngIf="searchedEventList.length === 0">{{"No results found!"}}</div>
+  </div>
+</div>

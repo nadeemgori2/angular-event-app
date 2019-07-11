@@ -1,0 +1,82 @@
+<div class="event-booking" *ngIf="bookingForm">
+  <div class="event-booking__header">
+    <p>{{selectedEvent.name}}</p>
+  </div>
+
+  <div class="event-booking__subtitle">
+    {{"Number of available seats - " + selectedEvent.numberOfSeatsSvailable}}
+  </div>
+  <div class="event-booking__form">
+
+    <form [formGroup]="bookingForm"
+          class="event-list__cards-form"
+    >
+      <table>
+        <tr>
+          <div class="label">Name:</div>
+          <td><input type="text" formControlName="name" placeholder="Please enter your name">
+            <div *ngIf="submitted && !bookingForm.controls['name'].valid"
+                 class="error"
+            >
+              Only letters and spaces are allowed
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <div class="label">Email:</div>
+          <td><input type="text" formControlName="email" placeholder="Please enter your email">
+            <div *ngIf="submitted && !bookingForm.controls['email'].valid"
+                 class="error"
+            >
+              Invalid email
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <div class="label">Phone Number:</div>
+          <td><input type="text" formControlName="phoneNumber" placeholder="Please enter 10 digit phone number"></td>
+        </tr>
+        <tr>
+          <div class="label">Number Of Seats:</div>
+          <td><select formControlName="numberOfSeats" (change)="onSeatSelect($event)">
+            <option value="1" [selected]="true">1 seat</option>
+            <option value="2">2 seat</option>
+            <option value="3">3 seat</option>
+            <option value="4">4 seat</option>
+            <option value="5">5 seat</option>
+            <option value="6">6 seat</option>
+          </select>
+            <div *ngIf="submitted && !bookingForm.controls['numberOfSeats'].valid"
+                 class="error"
+            >
+              Number of seats selected is more than available seats
+            </div>
+          </td>
+        </tr>
+        <ng-container *ngFor="let attendee of attendees, let i=index">
+          <tr>
+            <div class="label">Name Of Other Attendees {{i+1}} :</div>
+            <td><input type="text" [formControlName]="attendee"
+                       placeholder="Please enter the name of Attendee">
+              <div
+                *ngIf="submitted && !bookingForm.controls[attendee].valid && bookingForm.controls['numberOfSeats'].value > 1"
+                class="error"
+              >
+                Please enter Attendees Name
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </form>
+
+    <button type="submit" [disabled]="disableSubmit" (click)="onSubmit()">Submit</button>
+    <button type="button" [disabled]="disableCancel" (click)="onCancel()">Cancel</button>
+
+  </div>
+  <div class="success"
+       *ngIf="success"
+  >
+    Tickets booked!
+  </div>
+</div>

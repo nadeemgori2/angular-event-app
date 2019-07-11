@@ -1,0 +1,97 @@
+.event-list {
+  display: block;
+  background: #f4f4f4;
+}
+
+.event-list__header {
+  background: #333543;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-list__header-search {
+  width: 40%;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  box-shadow: none;
+  padding-left: 10px;
+  font-size: 12px;
+  color: #999;
+}
+
+.event-list__body {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+}
+
+.event-list__cards {
+  background: #fff;
+  padding: 10px 5px;
+  border-radius: 8px;
+  font-size: 100%;
+  font-weight: 400;
+  margin: 5px;
+}
+
+.event-list__cards_image {
+  width: 100%;
+}
+
+.event-list__cards-footer {
+  font-size: 100%;
+  font-weight: 400;
+  font-size: 17px;
+  color: #333;
+  line-height: normal;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-list__cards-footer_name {
+  text-align: center;
+}
+
+.event-list__cards-footer_seats {
+  font-size: 15px;
+  color: #999;
+  float: left;
+  padding-left: 5px;
+
+}
+
+.event-list__cards-footer_date {
+  font-size: 12px;
+  color: #999;
+  float: right;
+  padding-left: 5px
+}
+
+.event-list__cards-footer_button {
+  width: 100%;
+  height: 25px;
+  border-radius: 2px;
+  background-color: #d6181f;
+}
+
+.event-list__cards-footer_no-ticket {
+  text-align: center;
+  color: #d6181f;
+}
+
+img {
+  max-height: 150px;
+}
+
+@media only screen and (max-device-width: 1025px){
+  .event-list__body {
+    display: grid;
+    grid-template-columns: auto;
+    padding: 10px;
+  }
+}
